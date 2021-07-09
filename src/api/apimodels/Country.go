@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/kyokomi/emoji/v2"
+	"log"
 )
 
 type CountryInfo struct {
@@ -55,7 +56,12 @@ func (c *Country) GetReport() string {
 }
 
 func (c *Country) IsToday() bool {
+	log.Println("isToday?")
 	todayDate := time.Now().Format("2006-01-02")
+	log.Printf("todayDate %s\n", todayDate)
+	log.Printf("c.Updated: ")
+	log.Println(c.Updated)
 	countryUptatedDate := time.Unix(int64(c.Updated/1000), 0).Format("2006-01-02")
+	log.Printf("countryUptatedDate %s\n", countryUptatedDate)
 	return todayDate == countryUptatedDate
 }
